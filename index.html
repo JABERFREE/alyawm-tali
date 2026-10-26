@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اليوم التالي | بوابة إخبارية شاملة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- كود إعلانات AMP Auto Ads -->
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
+        body { background-color: #f4f6f9; color: #333; line-height: 1.5; font-size: 14px; }
+
+        /* الهيدر وشريط التنقل للموبايل */
+        header { background: #1b263b; color: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .top-bar { display: flex; justify-content: center; align-items: center; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { font-size: 1.3rem; font-weight: 900; color: #e0a96d; text-decoration: none; cursor: pointer; text-align: center; }
+
+        /* الأقسام الإخبارية مصغرة */
+        nav { background: #0d1b2a; display: flex; overflow-x: auto; padding: 8px 10px; gap: 8px; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+        nav::-webkit-scrollbar { height: 3px; }
+        nav::-webkit-scrollbar-thumb { background: #e0a96d; border-radius: 2px; }
+        nav a { color: #adb5bd; text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 4px 8px; transition: 0.3s; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
+        nav a:hover, nav a.active { color: #fff; background: #1b263b; }
+
+        /* البانر الخلفي مصغر */
+        .hero { background: linear-gradient(rgba(13,27,42,0.85), rgba(13,27,42,0.85)), url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80') center/cover; color: #fff; text-align: center; padding: 30px 12px; margin-bottom: 15px; }
+        .hero h1 { font-size: 1.35rem; color: #e0a96d; margin-bottom: 5px; font-weight: 700; }
+        .hero p { font-size: 0.8rem; color: #ced4da; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 10px; }
+
+        /* الإعلانات */
+        .ad-banner-box { background: #e9ecef; border: 1px dashed #adb5bd; border-radius: 6px; text-align: center; padding: 8px; margin: 12px 0; min-height: 60px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .ad-banner-box .ad-label { font-size: 0.65rem; color: #6c757d; font-weight: bold; text-transform: uppercase; margin-bottom: 2px; }
+
+        /* لوحة المشرف مصغرة وتظهر أسفل الصفحة عند الطلب */
+        .admin-panel { background: #fff; border: 2px solid #e0a96d; padding: 12px; border-radius: 6px; margin-bottom: 15px; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .admin-panel.active { display: block; }
+        .form-control { width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 0.8rem; }
+        .file-input-box { background: #f8f9fa; padding: 8px; border: 1px dashed #e0a96d; border-radius: 6px; margin-bottom: 8px; }
+        
+        /* عرض المقالات مصغر ومناسب للهاتف */
+        .section-title { font-size: 1.05rem; color: #1b263b; border-right: 3px solid #e0a96d; padding-right: 6px; margin-bottom: 10px; }
+        .articles-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        
+        .article-card { background: #fff; display: flex; gap: 10px; padding: 10px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: 0.3s; align-items: center; }
+        .article-card:hover { transform: translateY(-1px); }
+        
+        .article-img { width: 110px; height: 80px; object-fit: cover; border-radius: 4px; flex-shrink: 0; background: #ddd; cursor: pointer; }
+        
+        .article-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        .article-category { font-size: 0.65rem; background: #e0a96d; color: #1b263b; padding: 1px 5px; border-radius: 3px; width: fit-content; font-weight: bold; margin-bottom: 3px; }
+        .article-title { font-size: 0.9rem; font-weight: bold; color: #1b263b; margin-bottom: 4px; text-decoration: none; cursor: pointer; display: block; line-height: 1.3; }
+        .article-title:hover { color: #e0a96d; }
+        .article-desc { font-size: 0.75rem; color: #666; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
+        .article-meta { font-size: 0.65rem; color: #888; border-top: 1px solid #eee; padding-top: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
+
+        /* صفحة قراءة المقال الكاملة مصغرة */
+        .full-article-view { display: none; background: #fff; padding: 15px; border-radius: 6px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .back-btn { background: #1b263b; color: #fff; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 10px; font-size: 0.75rem; }
+        .full-article-img { width: 100%; max-height: 250px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
+        .full-article-title { font-size: 1.2rem; color: #1b263b; margin-bottom: 8px; line-height: 1.3; }
+        .author-box { font-size: 0.75rem; color: #666; margin-bottom: 10px; background: #f8f9fa; padding: 6px 10px; border-radius: 4px; border-right: 3px solid #e0a96d; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+        .full-article-text { font-size: 0.9rem; color: #444; line-height: 1.6; margin-bottom: 15px; white-space: pre-line; }
+        
+        /* أزرار المشاركة مصغرة */
+        .share-section { border-top: 1px solid #eee; padding-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+        .share-title { font-weight: bold; color: #1b263b; font-size: 0.8rem; }
+        .share-btn { padding: 5px 10px; border-radius: 4px; color: #fff; text-decoration: none; font-size: 0.75rem; font-weight: bold; display: inline-flex; align-items: center; gap: 3px; }
+        .whatsapp { background: #25d366; }
+        .facebook { background: #1877f2; }
+        .twitter { background: #1da1f2; }
+        .copy-link { background: #6c757d; border: none; cursor: pointer; }
+
+        /* النوافذ والسياسات */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 2000; display: none; }
+        .modal-content { background: #fff; padding: 15px; border-radius: 6px; width: 92%; max-width: 450px; max-height: 80vh; overflow-y: auto; position: relative; }
+        .close-btn { position: absolute; top: 8px; left: 12px; background: none; border: none; font-size: 18px; cursor: pointer; color: #333; }
+
+        /* الفوتر مصغر مع زر لوحة المشرف */
+        footer { background: #0d1b2a; color: #adb5bd; text-align: center; padding: 20px 10px; margin-top: 25px; font-size: 0.75rem; }
+        footer .footer-links { margin-bottom: 8px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+        footer a { color: #e0a96d; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .admin-footer-link { color: #adb5bd; background: rgba(255,255,255,0.08); padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 0.7rem; transition: 0.3s; }
+        .admin-footer-link:hover { color: #fff; background: rgba(255,255,255,0.15); }
+    </style>
+</head>
+<body>
+
+    <!-- كود إعلانات AMP Auto Ads -->
+    <amp-auto-ads type="adsense"
+            data-ad-client="ca-pub-8326203252240169">
+    </amp-auto-ads>
+
+    <header>
+        <div class="top-bar">
+            <a class="logo" onclick="goHome()">📰 اليوم التالي</a>
+        </div>
+        <nav id="categoryNav">
+            <a class="active" onclick="filterCategory('الكل', this)">الرئيسية</a>
+            <a onclick="filterCategory('أخبار عاجلة', this)">عاجل</a>
+            <a onclick="filterCategory('سياسة', this)">سياسة</a>
+            <a onclick="filterCategory('اقتصاد وبورصة', this)">اقتصاد</a>
+            <a onclick="filterCategory('عالم', this)">عالم</a>
+            <a onclick="filterCategory('رياضة', this)">رياضة</a>
+            <a onclick="filterCategory('صحة', this)">صحة</a>
+            <a onclick="filterCategory('ثقافة', this)">ثقافة</a>
+            <a onclick="filterCategory('فن', this)">فن</a>
+            <a onclick="filterCategory('تحقيقات', this)">تحقيقات</a>
+            <a onclick="filterCategory('حوادث', this)">حوادث</a>
+        </nav>
+    </header>
+
+    <div class="hero" id="heroSection">
+        <h1>صحافة الحقيقة واللحظة الحاسمة</h1>
+        <p>تابع أحدث المستجدات والأخبار العربية والعالمية على مدار الساعة</p>
+    </div>
+
+    <div class="container">
+        <!-- لوحة المشرف -->
+        <div class="admin-panel" id="adminPanel">
+            <h3 style="color: #1b263b; margin-bottom: 8px; font-size: 0.95rem;">إضافة / تعديل مقال جديد</h3>
+            <form id="articleForm" onsubmit="saveArticle(event)">
+                <input type="hidden" id="articleId">
+                <input type="text" id="artTitle" class="form-control" placeholder="عنوان المقال الرئيسي" required>
+                
+                <select id="artCategory" class="form-control" required>
+                    <option value="">اختر القسم</option>
+                    <option value="أخبار عاجلة">أخبار عاجلة</option>
+                    <option value="سياسة">سياسة</option>
+                    <option value="اقتصاد وبورصة">اقتصاد وبورصة</option>
+                    <option value="عالم">عالم</option>
+                    <option value="رياضة">رياضة</option>
+                    <option value="صحة">صحة</option>
+                    <option value="ثقافة">ثقافة</option>
+                    <option value="فن">فن</option>
+                    <option value="تحقيقات">تحقيقات</option>
+                    <option value="حوادث">حوادث</option>
+                </select>
+
+                <textarea id="artDesc" class="form-control" placeholder="محتوى المقال كاملاً..." rows="4" required></textarea>
+
+                <div class="file-input-box">
+                    <label style="font-weight: bold; display: block; margin-bottom: 3px; color: #1b263b; font-size: 0.75rem;">📷 اختر صورة المقال:</label>
+                    <input type="file" id="artImageFile" accept="image/*" class="form-control" style="margin-bottom: 0; font-size: 0.75rem;">
+                </div>
+
+                <div style="background: #f8f9fa; padding: 8px; border-radius: 4px; margin-bottom: 8px; border: 1px solid #ddd;">
+                    <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.75rem;">
+                        <input type="checkbox" id="isTransferred" onchange="toggleSourceInputs()"> 🔗 منقول من موقع آخر
+                    </label>
+
+                    <div id="sourceFields" style="display: none; margin-top: 6px;">
+                        <input type="text" id="sourceName" class="form-control" placeholder="اسم الموقع (مثال: الجزيرة)">
+                        <input type="url" id="sourceUrl" class="form-control" placeholder="رابط الخبر الأصلي (https://...)" style="margin-bottom: 0;">
+                    </div>
+                </div>
+
+                <button type="submit" class="admin-btn" style="width: 100%; padding: 8px; font-size: 0.85rem; background: #e0a96d; color: #1b263b; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;" id="saveBtn">💾 نشر المقال</button>
+            </form>
+
+            <div style="margin-top: 15px;">
+                <h4 style="color: #1b263b; margin-bottom: 6px; font-size: 0.85rem;">إدارة المقالات المنشورة:</h4>
+                <div id="adminArticlesList"></div>
+            </div>
+        </div>
+
+        <!-- قائمة المقالات -->
+        <div id="listView">
+            <h2 class="section-title" id="currentSectionTitle">آخر المقالات والأخبار</h2>
+            <div class="articles-grid" id="articlesContainer"></div>
+        </div>
+
+        <!-- عرض المقال الكامل -->
+        <div class="full-article-view" id="fullArticleView">
+            <button class="back-btn" onclick="goHome()">← عودة للرئيسية</button>
+            <span class="article-category" id="fullCat"></span>
+            <h1 class="full-article-title" id="fullTitle"></h1>
+            <div class="author-box" id="fullAuthor"></div>
+
+            <img src="" class="full-article-img" id="fullImg" alt="صورة المقال">
+            <div class="full-article-text" id="fullText"></div>
+            
+            <div class="share-section">
+                <span class="share-title">شارك:</span>
+                <a id="shareWhatsapp" href="#" target="_blank" class="share-btn whatsapp">💬 واتساب</a>
+                <a id="shareFacebook" href="#" target="_blank" class="share-btn facebook">📘 فيسبوك</a>
+                <a id="shareTwitter" href="#" target="_blank" class="share-btn twitter">🐦 إكس</a>
+                <button onclick="copyArticleLink()" class="share-btn copy-link">📋 نسخ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة السياسات -->
+    <div class="modal" id="policyModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h2 id="modalTitle" style="color: #1b263b; margin-bottom: 8px; font-size: 1.05rem;"></h2>
+            <div id="modalBody" style="color: #555; line-height: 1.5; font-size: 0.8rem;"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="javascript:void(0)" onclick="openPolicy('privacy')">سياسة الخصوصية</a> | 
+            <a href="javascript:void(0)" onclick="openPolicy('terms')">الشروط والأحكام</a> | 
+            <span class="admin-footer-link" onclick="toggleAdmin()">لوحة المشرف 🔒</span>
+        </div>
+        <p>جميع الحقوق محفوظة © 2026 - موقع اليوم التالي</p>
+    </footer>
+
+    <script>
+        const defaultArticles = [
+            {
+                id: '1',
+                title: 'عاجل: اتفاق دبلوماسي جديد لتهدئة التوترات الإقليمية',
+                category: 'أخبار عاجلة',
+                desc: 'أعلنت جهات رسمية عن التوصل إلى تفاهمات مشتركة تهدف إلى خفض التصعيد وإرساء قواعد استقرار جديدة بالمنطقة.\n\nمن المتوقع أن تُعقد جلسات مشاورات إضافية خلال الأسبوع المقبل لمتابعة تنفيذ البنود المتفق عليها.',
+                img: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-26'
+            },
+            {
+                id: '2',
+                title: 'قمة طارئة لبحث مستجدات السياسة الخارجية واتفاقيات التعاون',
+                category: 'سياسة',
+                desc: 'انطلقت اليوم أعمال القمة السياسية بمشاركة وفود رفيعة المستوى لمناقشة سبل تعزيز الشراكة الاستراتيجية ومواجهة التحديات الاقتصادية والجيوسياسية الراهنة.\n\nتركزت النقاشات حول آليات التنسيق المشترك في المحافل الدولية.',
+                img: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-25'
+            },
+            {
+                id: '3',
+                title: 'ارتفاع مؤشرات الأسواق العالمية وسط ترقب قرارات الفيدرالي',
+                category: 'اقتصاد وبورصة',
+                desc: 'شهدت الأسواق المالية تحركات ملحوظة اليوم مع ترقب المستثمرين لبيانات التضخم وأسعار الفائدة القادمة.\n\nتأتي هذه التحركات وسط قلق عام من تباطؤ النمو الاقتصادي العالمي، بينما تؤكد المؤسسات المالية ضرورة توخي الحذر.',
+                img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-25'
+            },
+            {
+                id: '4',
+                title: 'تطورات متسارعة في الملفات الأوروبية والآسيوية',
+                category: 'عالم',
+                desc: 'تسلط التقارير الدولية الضوء على التحولات السياسية الكبرى وتبادل الزيارات الدبلوماسية بين عواصم صنع القرار العالمية.\n\nتهدف هذه التحركات لاحتواء الأزمات التجارية وتأمين خطوط الإمداد.',
+                img: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-24'
+            },
+            {
+                id: '5',
+                title: 'إثارة كبرى في مسابقات الدوري المحلي وحسم الصدارة',
+                category: 'رياضة',
+                desc: 'انتهت قمة الجولة بفوز حاسم عزز من حظوظ الفريق المتصدر في المنافسة على اللقب هذا الموسم، وسط حضور جماهيري غفير وأداء فني عالي المستوى.',
+                img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-24'
+            },
+            {
+                id: '6',
+                title: 'ما الذي يجب تناوله للحصول على بشرة أكثر شباباً',
+                category: 'صحة',
+                desc: 'الشباب الدائم والنضارة المشرقة ليس نتيجة لكريمات العناية الباهظة وحدها، بل يبدأ السر الحقيقي من الداخل وتحديداً من ما نضعه في أطباقنا يومياً.',
+                img: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-26'
+            },
+            {
+                id: '7',
+                title: 'افتتاح معرض الكتاب الدولي وسط إقبال ثقافي واسع',
+                category: 'ثقافة',
+                desc: 'فتحت أبواب المعرض الدولي للكتاب اليوم بمشاركة دور نشر عربية وعالمية واسعة، ليقدم وجبة دسمة من الندوات الأدبية وتوقيع الإصدارات الجديدة.',
+                img: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-23'
+            },
+            {
+                id: '8',
+                title: 'نجوم الفن يحتفلون بالعرض الخاص لأحدث الإنتاجات السينمائية',
+                category: 'فن',
+                desc: 'شهد السجادة الحمراء حضوراً ضخماً لنجوم وصناع السينما للاحتفال بإطلاق الفيلم الجديد الذي يحمل طابعاً درامياً ومشوقاً.',
+                img: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-22'
+            },
+            {
+                id: '9',
+                title: 'تحقيق استقصائي: خبايا التحول الرقمي وتأثيره على المستقبل',
+                category: 'تحقيقات',
+                desc: 'يسلط هذا التحقيق الضوء على التحديات والفرص الكامنة خلف ثورة الذكاء الاصطناعي والتحول الرقمي في المؤسسات الحديثة.',
+                img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-22'
+            },
+            {
+                id: '10',
+                title: 'الجهات الأمنية تحبط محاولة احتيال إلكتروني وتضبط المتورطين',
+                category: 'حوادث',
+                desc: 'صرح مصدر أمني مسؤول عن نجاح الأجهزة المختصة في الإيقاع بشبكة تنفذ عمليات نصب إلكتروني، وتم اتخاذ الإجراءات القانونية اللازمة.',
+                img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+                author: 'اليوم التالي',
+                sourceUrl: '',
+                date: '2026-10-21'
+            }
+        ];
+
+        let articles = JSON.parse(localStorage.getItem('alyawm_stable_articles')) || defaultArticles;
+        let currentFilter = 'الكل';
+
+        function renderArticles() {
+            const container = document.getElementById('articlesContainer');
+            container.innerHTML = '';
+
+            let filtered = currentFilter === 'الكل' ? articles : articles.filter(a => a.category === currentFilter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#777; padding: 20px; font-size: 0.85rem;">لا توجد مقالات منشورة في هذا القسم حالياً.</p>`;
+                return;
+            }
+
+            filtered.forEach((a) => {
+                const authorDisplay = a.sourceUrl ? `منقول عن: ${a.author}` : `بقلم: ${a.author || 'اليوم التالي'}`;
+                const articleDate = a.date || '2026-10-26';
+
+                container.innerHTML += `
+                    <div class="article-card">
+                        <img src="${a.img}" class="article-img" alt="صورة الخبر" onclick="openArticle('${a.id}')">
+                        <div class="article-content">
+                            <div>
+                                <span class="article-category">${a.category}</span>
+                                <a class="article-title" onclick="openArticle('${a.id}')">${a.title}</a>
+                                <p class="article-desc">${a.desc}</p>
+                            </div>
+                            <div class="article-meta">
+                                <span>✍️ ${authorDisplay}</span>
+                                <span>📅 ${articleDate}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function openArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+
+            document.getElementById('fullCat').innerText = article.category;
+            document.getElementById('fullTitle').innerText = article.title;
+            document.getElementById('fullImg').src = article.img;
+            document.getElementById('fullText').innerText = article.desc;
+
+            const authorBox = document.getElementById('fullAuthor');
+            const articleDate = article.date || '2026-10-26';
+
+            if (article.sourceUrl) {
+                authorBox.innerHTML = `<div>✍️ <strong>الناشر:</strong> اليوم التالي | 🔗 <a href="${article.sourceUrl}" target="_blank" style="color:#e0a96d; font-weight:bold;">${article.author}</a></div> <div>📅 ${articleDate}</div>`;
+            } else {
+                authorBox.innerHTML = `<div>✍️ ${article.author || 'خاص باليوم التالي'}</div> <div>📅 ${articleDate}</div>`;
+            }
+
+            const pageUrl = window.location.href;
+            const shareText = encodeURIComponent(`اقرأ على موقع اليوم التالي:\n${article.title}`);
+            
+            document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${shareText}`;
+            document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+            document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${shareText}`;
+
+            document.getElementById('listView').style.display = 'none';
+            document.getElementById('heroSection').style.display = 'none';
+            document.getElementById('fullArticleView').style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function goHome() {
+            document.getElementById('fullArticleView').style.display = 'none';
+            document.getElementById('listView').style.display = 'block';
+            document.getElementById('heroSection').style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function copyArticleLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert("تم نسخ الرابط بنجاح!");
+        }
+
+        function filterCategory(cat, element) {
+            currentFilter = cat;
+            document.getElementById('currentSectionTitle').innerText = cat === 'الكل' ? 'آخر المقالات والأخبار' : `قسم: ${cat}`;
+            
+            document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            goHome();
+            renderArticles();
+        }
+
+        function toggleAdmin() {
+            const pass = prompt("أدخل كلمة مرور المشرف:");
+            if (pass === "moh62") {
+                const adminPanel = document.getElementById('adminPanel');
+                adminPanel.classList.toggle('active');
+                if (adminPanel.classList.contains('active')) {
+                    adminPanel.scrollIntoView({ behavior: 'smooth' });
+                }
+                renderAdminList();
+            } else if (pass !== null) {
+                alert("كلمة المرور غير صحيحة!");
+            }
+        }
+
+        function toggleSourceInputs() {
+            const isChecked = document.getElementById('isTransferred').checked;
+            document.getElementById('sourceFields').style.display = isChecked ? 'block' : 'none';
+        }
+
+        function processImageFile(file) {
+            return new Promise((resolve, reject) => {
+                if (!file) { resolve(null); return; }
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const maxDim = 700;
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > height && width > maxDim) {
+                            height *= maxDim / width;
+                            width = maxDim;
+                        } else if (height > maxDim) {
+                            width *= maxDim / height;
+                            height = maxDim;
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        resolve(canvas.toDataURL('image/jpeg', 0.8));
+                    };
+                    img.onerror = () => resolve(event.target.result);
+                };
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        async function saveArticle(e) {
+            e.preventDefault();
+            const saveBtn = document.getElementById('saveBtn');
+            saveBtn.disabled = true;
+            saveBtn.innerText = "جاري الحفظ والنشر...";
+
+            try {
+                const editId = document.getElementById('articleId').value;
+                const id = editId || 'art_' + Date.now();
+
+                const existingArticle = articles.find(a => a.id === id) || {};
+
+                const imageFile = document.getElementById('artImageFile').files[0];
+                const uploadedImg = imageFile ? await processImageFile(imageFile) : (existingArticle.img || 'https://via.placeholder.com/600x400?text=No+Image');
+
+                const isTransferred = document.getElementById('isTransferred').checked;
+                const author = isTransferred ? (document.getElementById('sourceName').value || 'موقع آخر') : 'اليوم التالي';
+                const sourceUrl = isTransferred ? document.getElementById('sourceUrl').value : '';
+                
+                const currentDate = new Date().toISOString().split('T')[0];
+                const articleDate = existingArticle.date || currentDate;
+
+                const articleData = {
+                    id: id,
+                    title: document.getElementById('artTitle').value,
+                    category: document.getElementById('artCategory').value,
+                    desc: document.getElementById('artDesc').value,
+                    img: uploadedImg,
+                    author: author,
+                    sourceUrl: sourceUrl,
+                    date: articleDate
+                };
+
+                const index = articles.findIndex(a => a.id === id);
+                if (index > -1) {
+                    articles[index] = articleData;
+                } else {
+                    articles.unshift(articleData);
+                }
+
+                localStorage.setItem('alyawm_stable_articles', JSON.stringify(articles));
+
+                document.getElementById('articleForm').reset();
+                document.getElementById('articleId').value = '';
+                document.getElementById('isTransferred').checked = false;
+                toggleSourceInputs();
+
+                renderArticles();
+                renderAdminList();
+                alert("🚀 تم نشر المقال بنجاح وسيظهر فوراً!");
+            } catch (err) {
+                alert("حدث خطأ أثناء الحفظ.");
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.innerText = "💾 نشر المقال";
+            }
+        }
+
+        function renderAdminList() {
+            const list = document.getElementById('adminArticlesList');
+            list.innerHTML = '';
+            articles.forEach(a => {
+                list.innerHTML += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; background:#f8f9fa; padding:6px 8px; margin-bottom:5px; border-radius:4px; border:1px solid #ddd; font-size:0.75rem;">
+                        <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:55%;"><strong>[${a.category}]</strong> ${a.title}</span>
+                        <div>
+                            <button onclick="editArticle('${a.id}')" style="background:#ffc107; border:none; padding:2px 6px; cursor:pointer; border-radius:3px; font-weight:bold; font-size:0.7rem;">تعديل</button>
+                            <button onclick="deleteArticle('${a.id}')" style="background:#dc3545; color:#fff; border:none; padding:2px 6px; cursor:pointer; border-radius:3px; margin-right:3px; font-weight:bold; font-size:0.7rem;">حذف</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function editArticle(id) {
+            const a = articles.find(item => item.id === id);
+            if (!a) return;
+            document.getElementById('articleId').value = a.id;
+            document.getElementById('artTitle').value = a.title;
+            document.getElementById('artCategory').value = a.category;
+            document.getElementById('artDesc').value = a.desc;
+
+            if (a.sourceUrl) {
+                document.getElementById('isTransferred').checked = true;
+                document.getElementById('sourceName').value = a.author;
+                document.getElementById('sourceUrl').value = a.sourceUrl;
+            } else {
+                document.getElementById('isTransferred').checked = false;
+            }
+            toggleSourceInputs();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function deleteArticle(id) {
+            if (confirm("هل أنت متأكد من الحذف؟")) {
+                articles = articles.filter(a => a.id !== id);
+                localStorage.setItem('alyawm_stable_articles', JSON.stringify(articles));
+                renderArticles();
+                renderAdminList();
+                alert("تم الحذف بنجاح!");
+            }
+        }
+
+        function openPolicy(type) {
+            const modal = document.getElementById('policyModal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+
+            if (type === 'privacy') {
+                title.innerText = "سياسة الخصوصية";
+                body.innerHTML = `<p>نحن في موقع <strong>اليوم التالي</strong> نلتزم بخصوصية زوارنا ونستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح والإعلانات.</p>`;
+            } else {
+                title.innerText = "الشروط والأحكام";
+                body.innerHTML = `<p>استخدامك لموقع <strong>اليوم التالي</strong> يقتضي الالتزام بالقوانين. جميع المواد المنشورة محمية ولا يجوز نسخها دون إذن.</p>`;
+            }
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('policyModal').style.display = 'none';
+        }
+
+        renderArticles();
+    </script>
+</body>
+</html>

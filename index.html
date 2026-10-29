@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اليوم التالي | بوابة إخبارية شاملة</title>
+    <title>مسار اليوم | بوابة إخبارية شاملة</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- مكتبة Firebase للمزامنة السحابية المباشرة -->
@@ -65,7 +65,7 @@
         .article-desc { font-size: 0.75rem; color: #666; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
         .article-meta { font-size: 0.65rem; color: #888; border-top: 1px solid #eee; padding-top: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
 
-        /* صفحة قراءة المقال الكاملة - تعديل عرض الصورة لكي تظهر بالكامل دون اقتطاع */
+        /* صفحة قراءة المقال الكاملة - الصورة الكاملة دون اقتطاع */
         .full-article-view { display: none; background: #fff; padding: 15px; border-radius: 6px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .back-btn { background: #1b263b; color: #fff; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 10px; font-size: 0.75rem; }
         .full-article-img { width: 100%; height: auto; max-height: 500px; object-fit: contain; border-radius: 4px; margin-bottom: 10px; background-color: #f8f9fa; }
@@ -105,7 +105,7 @@
 
     <header>
         <div class="top-bar">
-            <a class="logo" onclick="goHome()">📰 اليوم التالي</a>
+            <a class="logo" onclick="goHome()">📰 مسار اليوم</a>
         </div>
         <nav id="categoryNav">
             <a class="active" onclick="filterCategory('الكل', this)">الرئيسية</a>
@@ -217,7 +217,7 @@
             <a href="javascript:void(0)" onclick="openPolicy('terms')">الشروط والأحكام</a> | 
             <span class="admin-footer-link" onclick="toggleAdmin()">لوحة المشرف 🔒</span>
         </div>
-        <p>جميع الحقوق محفوظة © 2026 - موقع اليوم التالي</p>
+        <p>جميع الحقوق محفوظة © 2026 - موقع مسار اليوم</p>
     </footer>
 
     <script>
@@ -235,7 +235,7 @@
                 category: 'أخبار عاجلة',
                 desc: 'أعلنت جهات رسمية عن التوصل إلى تفاهمات مشتركة تهدف إلى خفض التصعيد وإرساء قواعد استقرار جديدة بالمنطقة.\n\nمن المتوقع أن تُعقد جلسات مشاورات إضافية خلال الأسبوع المقبل لمتابعة تنفيذ البنود المتفق عليها.',
                 img: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-26'
             },
@@ -245,7 +245,7 @@
                 category: 'سياسة',
                 desc: 'انطلقت اليوم أعمال القمة السياسية بمشاركة وفود رفيعة المستوى لمناقشة سبل تعزيز الشراكة الاستراتيجية ومواجهة التحديات الاقتصادية والجيوسياسية الراهنة.\n\nتركزت النقاشات حول آليات التنسيق المشترك في المحافل الدولية.',
                 img: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-25'
             },
@@ -255,7 +255,7 @@
                 category: 'اقتصاد وبورصة',
                 desc: 'شهدت الأسواق المالية تحركات ملحوظة اليوم مع ترقب المستثمرين لبيانات التضخم وأسعار الفائدة القادمة.\n\nتأتي هذه التحركات وسط قلق عام من تباطؤ النمو الاقتصادي العالمي، بينما تؤكد المؤسسات المالية ضرورة توخي الحذر.',
                 img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-25'
             },
@@ -265,7 +265,7 @@
                 category: 'عالم',
                 desc: 'تسلط التقارير الدولية الضوء على التحولات السياسية الكبرى وتبادل الزيارات الدبلوماسية بين عواصم صنع القرار العالمية.\n\nتهدف هذه التحركات لاحتواء الأزمات التجارية وتأمين خطوط الإمداد.',
                 img: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-24'
             },
@@ -275,7 +275,7 @@
                 category: 'رياضة',
                 desc: 'انتهت قمة الجولة بفوز حاسم عزز من حظوظ الفريق المتصدر في المنافسة على اللقب هذا الموسم، وسط حضور جماهيري غفير وأداء فني عالي المستوى.',
                 img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-24'
             },
@@ -285,7 +285,7 @@
                 category: 'صحة',
                 desc: 'الشباب الدائم والنضارة المشرقة ليس نتيجة لكريمات العناية الباهظة وحدها، بل يبدأ السر الحقيقي من الداخل وتحديداً من ما نضعه في أطباقنا يومياً.',
                 img: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-26'
             },
@@ -295,7 +295,7 @@
                 category: 'ثقافة',
                 desc: 'فتحت أبواب المعرض الدولي للكتاب اليوم بمشاركة دور نشر عربية وعالمية واسعة، ليقدم وجبة دسمة من الندوات الأدبية وتوقيع الإصدارات الجديدة.',
                 img: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-23'
             },
@@ -305,7 +305,7 @@
                 category: 'فن',
                 desc: 'شهد السجادة الحمراء حضوراً ضخماً لنجوم وصناع السينما للاحتفال بإطلاق الفيلم الجديد الذي يحمل طابعاً درامياً ومشوقاً.',
                 img: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-22'
             },
@@ -315,7 +315,7 @@
                 category: 'تحقيقات',
                 desc: 'يسلط هذا التحقيق الضوء على التحديات والفرص الكامنة خلف ثورة الذكاء الاصطناعي والتحول الرقمي في المؤسسات الحديثة.',
                 img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-22'
             },
@@ -325,7 +325,7 @@
                 category: 'حوادث',
                 desc: 'صرح مصدر أمني مسؤول عن نجاح الأجهزة المختصة في الإيقاع بشبكة تنفذ عمليات نصب إلكتروني، وتم اتخاذ الإجراءات القانونية اللازمة.',
                 img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
-                author: 'اليوم التالي',
+                author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-21'
             }
@@ -363,7 +363,7 @@
             }
 
             filtered.forEach((a) => {
-                const authorDisplay = a.sourceUrl ? `منقول عن: ${a.author}` : `بقلم: ${a.author || 'اليوم التالي'}`;
+                const authorDisplay = a.sourceUrl ? `منقول عن: ${a.author}` : `بقلم: ${a.author || 'مسار اليوم'}`;
                 const articleDate = a.date || '2026-10-26';
 
                 container.innerHTML += `
@@ -398,13 +398,13 @@
             const articleDate = article.date || '2026-10-26';
 
             if (article.sourceUrl) {
-                authorBox.innerHTML = `<div>✍️ <strong>الناشر:</strong> اليوم التالي | 🔗 <a href="${article.sourceUrl}" target="_blank" style="color:#e0a96d; font-weight:bold;">${article.author}</a></div> <div>📅 ${articleDate}</div>`;
+                authorBox.innerHTML = `<div>✍️ <strong>الناشر:</strong> مسار اليوم | 🔗 <a href="${article.sourceUrl}" target="_blank" style="color:#e0a96d; font-weight:bold;">${article.author}</a></div> <div>📅 ${articleDate}</div>`;
             } else {
-                authorBox.innerHTML = `<div>✍️ ${article.author || 'خاص باليوم التالي'}</div> <div>📅 ${articleDate}</div>`;
+                authorBox.innerHTML = `<div>✍️ ${article.author || 'خاص بمسار اليوم'}</div> <div>📅 ${articleDate}</div>`;
             }
 
             const pageUrl = window.location.href;
-            const shareText = encodeURIComponent(`اقرأ على موقع اليوم التالي:\n${article.title}`);
+            const shareText = encodeURIComponent(`اقرأ على موقع مسار اليوم:\n${article.title}`);
             
             document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${shareText}`;
             document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
@@ -457,7 +457,6 @@
             document.getElementById('sourceFields').style.display = isChecked ? 'block' : 'none';
         }
 
-        // تعديل معالجة الصور للحفاظ على النسبة والتناسب بين العرض والارتفاع الكامل دون اقتطاع
         function processImageFile(file) {
             return new Promise((resolve, reject) => {
                 if (!file) { resolve(null); return; }
@@ -468,7 +467,7 @@
                     img.src = event.target.result;
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
-                        const maxDim = 1200; // زيادة الدقة لتفاصيل أوضح
+                        const maxDim = 1200;
                         let width = img.width;
                         let height = img.height;
 
@@ -510,7 +509,7 @@
                 const uploadedImg = imageFile ? await processImageFile(imageFile) : (existingArticle.img || 'https://via.placeholder.com/600x400?text=No+Image');
 
                 const isTransferred = document.getElementById('isTransferred').checked;
-                const author = isTransferred ? (document.getElementById('sourceName').value || 'موقع آخر') : 'اليوم التالي';
+                const author = isTransferred ? (document.getElementById('sourceName').value || 'موقع آخر') : 'مسار اليوم';
                 const sourceUrl = isTransferred ? document.getElementById('sourceUrl').value : '';
                 
                 const currentDate = new Date().toISOString().split('T')[0];
@@ -534,7 +533,7 @@
                 document.getElementById('isTransferred').checked = false;
                 toggleSourceInputs();
 
-                alert("🚀 تم نشر المقال بالصورة الكاملة بنجاح!");
+                alert("🚀 تم نشر المقال تحت اسم (مسار اليوم) بنجاح!");
             } catch (err) {
                 alert("حدث خطأ أثناء النشر السحابي.");
             } finally {
@@ -593,10 +592,10 @@
 
             if (type === 'privacy') {
                 title.innerText = "سياسة الخصوصية";
-                body.innerHTML = `<p>نحن في موقع <strong>اليوم التالي</strong> نلتزم بخصوصية زوارنا ونستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح والإعلانات.</p>`;
+                body.innerHTML = `<p>نحن في موقع <strong>مسار اليوم</strong> نلتزم بخصوصية زوارنا ونستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح والإعلانات.</p>`;
             } else {
                 title.innerText = "الشروط والأحكام";
-                body.innerHTML = `<p>استخدامك لموقع <strong>اليوم التالي</strong> يقتضي الالتزام بالقوانين. جميع المواد المنشورة محمية ولا يجوز نسخها دون إذن.</p>`;
+                body.innerHTML = `<p>استخدامك لموقع <strong>مسار اليوم</strong> يقتضي الالتزام بالقوانين. جميع المواد المنشورة محمية ولا يجوز نسخها دون إذن.</p>`;
             }
             modal.style.display = 'flex';
         }

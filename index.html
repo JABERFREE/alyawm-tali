@@ -138,8 +138,7 @@
                     <option value="مسار العالم">مسار العالم</option>
                 </select>
 
-                <!-- تم إصلاح حقل النص هنا ليتقبل الضغط على Enter والنزول للأسفل بحرية تامة -->
-                <textarea id="artDesc" class="form-control" placeholder="محتوى المقال كاملاً... (يمكنك النزول أسطر حرة وإدراج صور هكذا: [IMAGE:رابط_الصورة])" rows="8" required onkeydown="if(event.key === 'Enter' && event.shiftKey){ /* السماح بالسطر الجديد */ }"></textarea>
+                <textarea id="artDesc" class="form-control" placeholder="محتوى المقال كاملاً... (يمكنك إدراج صور هكذا: [IMAGE:رابط_الصورة])" rows="8" required></textarea>
 
                 <div class="file-input-box">
                     <label style="font-weight: bold; display: block; margin-bottom: 3px; color: #1b263b; font-size: 0.75rem;">📷 الصورة الرئيسية للبطاقة:</label>
@@ -187,7 +186,7 @@
                 <a id="shareWhatsapp" href="#" target="_blank" class="share-btn whatsapp">💬 واتساب</a>
                 <a id="shareFacebook" href="#" target="_blank" class="share-btn facebook">📘 فيسبوك</a>
                 <a id="shareTwitter" href="#" target="_blank" class="share-btn twitter">🐦 إكس</a>
-                <button onclick="copyArticleLink()" class="share-btn copy-link">📋 نسخ الرابط</button>
+                <button onclick="copyArticleLink()" class="share-btn copy-link">📋 نسخ الرابط المباشر للمقال</button>
             </div>
         </div>
     </div>
@@ -218,6 +217,7 @@
 
         let articles = [];
         let currentFilter = 'الكل';
+        let currentOpenArticleId = null;
 
         const defaultArticles = [
             {
@@ -285,11 +285,22 @@
                 }
                 renderArticles();
                 renderAdminList();
+                checkUrlHash(); // فحص ما إذا كان هناك مقال مطلوب فتح مباشرة من الرابط
             }, (error) => {
                 console.error("Firebase Read Error:", error);
                 articles = defaultArticles;
                 renderArticles();
+                checkUrlHash();
             });
+        }
+
+        // التأكد من فتح المقال المطلوب مباشرة إذا احتوى الرابط على معرف المقال
+        function checkUrlHash() {
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#article-')) {
+                const articleId = hash.replace('#article-', '');
+                openArticle(articleId, false);
+            }
         }
 
         function renderArticles() {
@@ -306,7 +317,6 @@
             filtered.forEach((a) => {
                 const authorDisplay = a.sourceUrl ? `مصدر المقال: ${a.author}` : `بقلم: ${a.author || 'مسار اليوم'}`;
                 const articleDate = a.date || '2026-10-26';
-                
                 const cleanDesc = a.desc.replace(/\[IMAGE:.*?\]/g, '');
 
                 container.innerHTML += `
@@ -328,9 +338,14 @@
             });
         }
 
-        function openArticle(id) {
+        function openArticle(id, updateHash = true) {
             const article = articles.find(a => a.id === id);
             if (!article) return;
+
+            currentOpenArticleId = id;
+            if (updateHash) {
+                window.location.hash = `article-${id}`;
+            }
 
             document.getElementById('fullCat').innerText = article.category;
             document.getElementById('fullTitle').innerText = article.title;
@@ -348,12 +363,12 @@
                 authorBox.innerHTML = `<div>✍️ ${article.author || 'خاص بمسار اليوم'}</div> <div>📅 ${articleDate}</div>`;
             }
 
-            const pageUrl = window.location.href;
+            const directArticleUrl = window.location.origin + window.location.pathname + `#article-${id}`;
             const shareText = encodeURIComponent(`اقرأ على منصة مسار اليوم:\n${article.title}`);
             
-            document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${shareText}`;
-            document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
-            document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${shareText}`;
+            document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${shareText}%20${encodeURIComponent(directArticleUrl)}`;
+            document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(directArticleUrl)}`;
+            document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(directArticleUrl)}`;
 
             document.getElementById('listView').style.display = 'none';
             document.getElementById('heroSection').style.display = 'none';
@@ -362,6 +377,8 @@
         }
 
         function goHome() {
+            window.location.hash = '';
+            currentOpenArticleId = null;
             document.getElementById('fullArticleView').style.display = 'none';
             document.getElementById('listView').style.display = 'block';
             document.getElementById('heroSection').style.display = 'block';
@@ -369,8 +386,14 @@
         }
 
         function copyArticleLink() {
-            navigator.clipboard.writeText(window.location.href);
-            alert("تم نسخ رابط المقال بنجاح!");
+            if (currentOpenArticleId) {
+                const directUrl = window.location.origin + window.location.pathname + `#article-${currentOpenArticleId}`;
+                navigator.clipboard.writeText(directUrl);
+                alert("تم نسخ الرابط المباشر للمقال بنجاح!");
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert("تم نسخ الرابط بنجاح!");
+            }
         }
 
         function filterCategory(cat, element) {
@@ -480,9 +503,9 @@
                 document.getElementById('isTransferred').checked = false;
                 toggleSourceInputs();
 
-                alert("🚀 تم نشر المقال بنجاح!");
+                alert("🚀 تم نشر المقال وإنشاء رابط مباشر له بنجاح!");
             } catch (err) {
-                alert("حدث خطأ أثناء النشر سحابي.");
+                alert("حدث خطأ أثناء النشر سحابياً.");
             } finally {
                 saveBtn.disabled = false;
                 saveBtn.innerText = "💾 نشر المقال سحابياً";

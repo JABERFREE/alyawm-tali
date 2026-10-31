@@ -138,7 +138,8 @@
                     <option value="مسار العالم">مسار العالم</option>
                 </select>
 
-                <textarea id="artDesc" class="form-control" placeholder="محتوى المقال كاملاً... (يمكنك إدراج صور بين السطور هكذا: [IMAGE:رابط_الصورة])" rows="6" required></textarea>
+                <!-- تم إصلاح حقل النص هنا ليتقبل الضغط على Enter والنزول للأسفل بحرية تامة -->
+                <textarea id="artDesc" class="form-control" placeholder="محتوى المقال كاملاً... (يمكنك النزول أسطر حرة وإدراج صور هكذا: [IMAGE:رابط_الصورة])" rows="8" required onkeydown="if(event.key === 'Enter' && event.shiftKey){ /* السماح بالسطر الجديد */ }"></textarea>
 
                 <div class="file-input-box">
                     <label style="font-weight: bold; display: block; margin-bottom: 3px; color: #1b263b; font-size: 0.75rem;">📷 الصورة الرئيسية للبطاقة:</label>
@@ -306,7 +307,6 @@
                 const authorDisplay = a.sourceUrl ? `مصدر المقال: ${a.author}` : `بقلم: ${a.author || 'مسار اليوم'}`;
                 const articleDate = a.date || '2026-10-26';
                 
-                // تنظيف الوصف من كود الصور عند عرضه في القائمة الرئيسية المختصرة
                 const cleanDesc = a.desc.replace(/\[IMAGE:.*?\]/g, '');
 
                 container.innerHTML += `
@@ -336,7 +336,6 @@
             document.getElementById('fullTitle').innerText = article.title;
             document.getElementById('fullImg').src = article.img;
             
-            // تحويل وسم [IMAGE:رابط] إلى وسم صورة HTML حقيقي ليظهر بين السطور
             let formattedText = article.desc.replace(/\[IMAGE:(.*?)\]/g, '<img src="$1" alt="صورة داخل المقال">');
             document.getElementById('fullText').innerHTML = formattedText;
 
@@ -481,9 +480,9 @@
                 document.getElementById('isTransferred').checked = false;
                 toggleSourceInputs();
 
-                alert("🚀 تم نشر المقال وإتاحة الصور بين السطور بنجاح!");
+                alert("🚀 تم نشر المقال بنجاح!");
             } catch (err) {
-                alert("حدث خطأ أثناء النشر السحابي.");
+                alert("حدث خطأ أثناء النشر سحابي.");
             } finally {
                 saveBtn.disabled = false;
                 saveBtn.innerText = "💾 نشر المقال سحابياً";
@@ -543,10 +542,10 @@
                 body.innerHTML = `<p>منصة <strong>مسار اليوم</strong> هي نافذة رقمية ثقافية ومعرفية مستقلة، تهدف إلى إحياء الشغف بالمعرفة من خلال الغوص في أعماق التاريخ، واستكشاف عوالم الفن والإبداع، وإبراز تجليات الثقافة الإنسانية، ومتابعة المشهد العالمي، مع مواكبة أحدث التحولات التكنولوجية التي تصنع المستقبل.</p><p style="margin-top:10px;">نؤمن بأن الكلمة الصادقة والصورة المُلهمة هما جسر التواصل بين الماضي والحاضر، ونسعى لتقديم محتوى راقٍ وموثوق يلهم عقول القراء.</p>`;
             } else if (type === 'privacy') {
                 title.innerText = "سياسة الخصوصية";
-                body.innerHTML = `<p>نحن في منصة <strong>مسار اليوم</strong> نولي اهتماماً بالغاً بخصوصية زوارنا. نحترم سرية البيانات ونستخدم ملفات تعريف الارتباط لتحسين تجربة تصفحك للمحتوى الثقافي والفني بكل أمان.</p>`;
+                body.innerHTML = `<p>منصة <strong>مسار اليوم</strong> تلتزم بخصوصية زوارنا...</p>`;
             } else {
                 title.innerText = "الشروط والأحكام";
-                body.innerHTML = `<p>استخدامك لمنصة <strong>مسار اليوم</strong> يعني موافقتك على الالتزام بحقوق الملكية الفكرية. جميع المواد والمقالات المنشورة محمية ولا يجوز إعادة نشرها دون إذن مسبق.</p>`;
+                body.innerHTML = `<p>استخدامك لمنصة <strong>مسار اليوم</strong> يعني موافقتك على الالتزام بحقوق الملكية الفكرية...</p>`;
             }
             modal.style.display = 'flex';
         }

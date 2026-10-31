@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مسار اليوم | بوابة إخبارية شاملة</title>
+    <title>مسار اليوم | نافذتك على التاريخ والفن والثقافة والعالم</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- مكتبة Firebase للمزامنة السحابية المباشرة -->
@@ -24,59 +24,58 @@
         .top-bar { display: flex; justify-content: center; align-items: center; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .logo { font-size: 1.3rem; font-weight: 900; color: #e0a96d; text-decoration: none; cursor: pointer; text-align: center; }
 
-        /* الأقسام الإخبارية مصغرة */
-        nav { background: #0d1b2a; display: flex; overflow-x: auto; padding: 8px 10px; gap: 8px; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+        /* الأقسام المحددة */
+        nav { background: #0d1b2a; display: flex; justify-content: center; overflow-x: auto; padding: 10px; gap: 12px; white-space: nowrap; -webkit-overflow-scrolling: touch; }
         nav::-webkit-scrollbar { height: 3px; }
         nav::-webkit-scrollbar-thumb { background: #e0a96d; border-radius: 2px; }
-        nav a { color: #adb5bd; text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 4px 8px; transition: 0.3s; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
+        nav a { color: #adb5bd; text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 5px 12px; transition: 0.3s; border-radius: 4px; cursor: pointer; flex-shrink: 0; }
         nav a:hover, nav a.active { color: #fff; background: #1b263b; }
 
-        /* البانر الخلفي مصغر */
-        .hero { background: linear-gradient(rgba(13,27,42,0.85), rgba(13,27,42,0.85)), url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80') center/cover; color: #fff; text-align: center; padding: 30px 12px; margin-bottom: 15px; }
-        .hero h1 { font-size: 1.35rem; color: #e0a96d; margin-bottom: 5px; font-weight: 700; }
-        .hero p { font-size: 0.8rem; color: #ced4da; }
+        /* البانر الرئيسي */
+        .hero { background: linear-gradient(rgba(13,27,42,0.85), rgba(13,27,42,0.85)), url('https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=1200&q=80') center/cover; color: #fff; text-align: center; padding: 40px 15px; margin-bottom: 20px; }
+        .hero h1 { font-size: 1.5rem; color: #e0a96d; margin-bottom: 8px; font-weight: 900; }
+        .hero p { font-size: 0.9rem; color: #ced4da; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 10px; }
 
-        /* الإعلانات */
-        .ad-banner-box { background: #e9ecef; border: 1px dashed #adb5bd; border-radius: 6px; text-align: center; padding: 8px; margin: 12px 0; min-height: 60px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .ad-banner-box .ad-label { font-size: 0.65rem; color: #6c757d; font-weight: bold; text-transform: uppercase; margin-bottom: 2px; }
-
-        /* لوحة المشرف مصغرة وتظهر أسفل الصفحة عند الطلب */
+        /* لوحة المشرف */
         .admin-panel { background: #fff; border: 2px solid #e0a96d; padding: 12px; border-radius: 6px; margin-bottom: 15px; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .admin-panel.active { display: block; }
         .form-control { width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ced4da; border-radius: 4px; font-size: 0.8rem; }
         .file-input-box { background: #f8f9fa; padding: 8px; border: 1px dashed #e0a96d; border-radius: 6px; margin-bottom: 8px; }
         
-        /* عرض المقالات مصغر ومناسب للهاتف */
-        .section-title { font-size: 1.05rem; color: #1b263b; border-right: 3px solid #e0a96d; padding-right: 6px; margin-bottom: 10px; }
-        .articles-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        /* عرض المقالات */
+        .section-title { font-size: 1.1rem; color: #1b263b; border-right: 3px solid #e0a96d; padding-right: 6px; margin-bottom: 12px; font-weight: 700; }
+        .articles-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
         
-        .article-card { background: #fff; display: flex; gap: 10px; padding: 10px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: 0.3s; align-items: center; }
+        .article-card { background: #fff; display: flex; gap: 12px; padding: 10px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: 0.3s; align-items: center; }
         .article-card:hover { transform: translateY(-1px); }
         
-        .article-img { width: 110px; height: 80px; object-fit: cover; border-radius: 4px; flex-shrink: 0; background: #ddd; cursor: pointer; }
+        .article-img { width: 120px; height: 85px; object-fit: cover; border-radius: 4px; flex-shrink: 0; background: #ddd; cursor: pointer; }
         
         .article-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         
-        .article-category { font-size: 0.65rem; background: #e0a96d; color: #1b263b; padding: 1px 5px; border-radius: 3px; width: fit-content; font-weight: bold; margin-bottom: 3px; }
-        .article-title { font-size: 0.9rem; font-weight: bold; color: #1b263b; margin-bottom: 4px; text-decoration: none; cursor: pointer; display: block; line-height: 1.3; }
+        .article-category { font-size: 0.65rem; background: #e0a96d; color: #1b263b; padding: 2px 6px; border-radius: 3px; width: fit-content; font-weight: bold; margin-bottom: 4px; }
+        .article-title { font-size: 0.95rem; font-weight: bold; color: #1b263b; margin-bottom: 4px; text-decoration: none; cursor: pointer; display: block; line-height: 1.3; }
         .article-title:hover { color: #e0a96d; }
-        .article-desc { font-size: 0.75rem; color: #666; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
-        .article-meta { font-size: 0.65rem; color: #888; border-top: 1px solid #eee; padding-top: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
+        .article-desc { font-size: 0.78rem; color: #666; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
+        .article-meta { font-size: 0.68rem; color: #888; border-top: 1px solid #eee; padding-top: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
 
-        /* صفحة قراءة المقال الكاملة - الصورة الكاملة دون اقتطاع */
-        .full-article-view { display: none; background: #fff; padding: 15px; border-radius: 6px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .back-btn { background: #1b263b; color: #fff; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 10px; font-size: 0.75rem; }
-        .full-article-img { width: 100%; height: auto; max-height: 500px; object-fit: contain; border-radius: 4px; margin-bottom: 10px; background-color: #f8f9fa; }
-        .full-article-title { font-size: 1.2rem; color: #1b263b; margin-bottom: 8px; line-height: 1.3; }
-        .author-box { font-size: 0.75rem; color: #666; margin-bottom: 10px; background: #f8f9fa; padding: 6px 10px; border-radius: 4px; border-right: 3px solid #e0a96d; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
-        .full-article-text { font-size: 0.9rem; color: #444; line-height: 1.6; margin-bottom: 15px; white-space: pre-line; }
+        /* صفحة قراءة المقال الكاملة */
+        .full-article-view { display: none; background: #fff; padding: 20px; border-radius: 6px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .back-btn { background: #1b263b; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 12px; font-size: 0.8rem; }
+        .full-article-img { width: 100%; height: auto; max-height: 500px; object-fit: contain; border-radius: 4px; margin-bottom: 15px; background-color: #f8f9fa; }
+        .full-article-title { font-size: 1.3rem; color: #1b263b; margin-bottom: 10px; line-height: 1.3; font-weight: 800; }
+        .author-box { font-size: 0.8rem; color: #666; margin-bottom: 15px; background: #f8f9fa; padding: 8px 12px; border-radius: 4px; border-right: 3px solid #e0a96d; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
         
-        /* أزرار المشاركة مصغرة */
-        .share-section { border-top: 1px solid #eee; padding-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-        .share-title { font-weight: bold; color: #1b263b; font-size: 0.8rem; }
-        .share-btn { padding: 5px 10px; border-radius: 4px; color: #fff; text-decoration: none; font-size: 0.75rem; font-weight: bold; display: inline-flex; align-items: center; gap: 3px; }
+        /* تنسيق النصوص والصور الداخلية بين السطور */
+        .full-article-text { font-size: 0.95rem; color: #444; line-height: 1.8; margin-bottom: 20px; white-space: pre-line; }
+        .full-article-text img { width: 100%; height: auto; max-height: 450px; object-fit: contain; border-radius: 6px; margin: 15px 0; display: block; background: #f8f9fa; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        
+        /* أزرار المشاركة */
+        .share-section { border-top: 1px solid #eee; padding-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .share-title { font-weight: bold; color: #1b263b; font-size: 0.85rem; }
+        .share-btn { padding: 6px 12px; border-radius: 4px; color: #fff; text-decoration: none; font-size: 0.78rem; font-weight: bold; display: inline-flex; align-items: center; gap: 4px; }
         .whatsapp { background: #25d366; }
         .facebook { background: #1877f2; }
         .twitter { background: #1da1f2; }
@@ -84,15 +83,15 @@
 
         /* النوافذ والسياسات */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 2000; display: none; }
-        .modal-content { background: #fff; padding: 15px; border-radius: 6px; width: 92%; max-width: 450px; max-height: 80vh; overflow-y: auto; position: relative; }
-        .close-btn { position: absolute; top: 8px; left: 12px; background: none; border: none; font-size: 18px; cursor: pointer; color: #333; }
+        .modal-content { background: #fff; padding: 20px; border-radius: 6px; width: 92%; max-width: 550px; max-height: 85vh; overflow-y: auto; position: relative; }
+        .close-btn { position: absolute; top: 10px; left: 15px; background: none; border: none; font-size: 20px; cursor: pointer; color: #333; }
 
-        /* الفوتر مصغر مع زر لوحة المشرف */
-        footer { background: #0d1b2a; color: #adb5bd; text-align: center; padding: 20px 10px; margin-top: 25px; font-size: 0.75rem; }
-        footer .footer-links { margin-bottom: 8px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+        /* الفوتر */
+        footer { background: #0d1b2a; color: #adb5bd; text-align: center; padding: 25px 10px; margin-top: 30px; font-size: 0.78rem; }
+        footer .footer-links { margin-bottom: 10px; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
         footer a { color: #e0a96d; text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-        .admin-footer-link { color: #adb5bd; background: rgba(255,255,255,0.08); padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 0.7rem; transition: 0.3s; }
+        .admin-footer-link { color: #adb5bd; background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; transition: 0.3s; }
         .admin-footer-link:hover { color: #fff; background: rgba(255,255,255,0.15); }
     </style>
 </head>
@@ -105,26 +104,21 @@
 
     <header>
         <div class="top-bar">
-            <a class="logo" onclick="goHome()">📰 مسار اليوم</a>
+            <a class="logo" onclick="goHome()">🏛️ مسار اليوم</a>
         </div>
         <nav id="categoryNav">
             <a class="active" onclick="filterCategory('الكل', this)">الرئيسية</a>
-            <a onclick="filterCategory('أخبار عاجلة', this)">عاجل</a>
-            <a onclick="filterCategory('سياسة', this)">سياسة</a>
-            <a onclick="filterCategory('اقتصاد وبورصة', this)">اقتصاد</a>
-            <a onclick="filterCategory('عالم', this)">عالم</a>
-            <a onclick="filterCategory('رياضة', this)">رياضة</a>
-            <a onclick="filterCategory('صحة', this)">صحة</a>
-            <a onclick="filterCategory('ثقافة', this)">ثقافة</a>
-            <a onclick="filterCategory('فن', this)">فن</a>
-            <a onclick="filterCategory('تحقيقات', this)">تحقيقات</a>
-            <a onclick="filterCategory('حوادث', this)">حوادث</a>
+            <a onclick="filterCategory('التاريخ', this)">التاريخ</a>
+            <a onclick="filterCategory('الثقافة', this)">الثقافة</a>
+            <a onclick="filterCategory('الفن', this)">الفن</a>
+            <a onclick="filterCategory('التكنولوجيا', this)">التكنولوجيا</a>
+            <a onclick="filterCategory('مسار العالم', this)">مسار العالم</a>
         </nav>
     </header>
 
     <div class="hero" id="heroSection">
-        <h1>صحافة الحقيقة واللحظة الحاسمة</h1>
-        <p>تابع أحدث المستجدات والأخبار العربية والعالمية على مدار الساعة</p>
+        <h1>نأخذك كل يوم في مسار جديد عبر التاريخ والفن والثقافة</h1>
+        <p>استكشف معنا أعمق الحكايات، وأبدع اللوحات، وأحدث الابتكار التقني برؤية متفردة</p>
     </div>
 
     <div class="container">
@@ -137,37 +131,32 @@
                 
                 <select id="artCategory" class="form-control" required>
                     <option value="">اختر القسم</option>
-                    <option value="أخبار عاجلة">أخبار عاجلة</option>
-                    <option value="سياسة">سياسة</option>
-                    <option value="اقتصاد وبورصة">اقتصاد وبورصة</option>
-                    <option value="عالم">عالم</option>
-                    <option value="رياضة">رياضة</option>
-                    <option value="صحة">صحة</option>
-                    <option value="ثقافة">ثقافة</option>
-                    <option value="فن">فن</option>
-                    <option value="تحقيقات">تحقيقات</option>
-                    <option value="حوادث">حوادث</option>
+                    <option value="التاريخ">التاريخ</option>
+                    <option value="الثقافة">الثقافة</option>
+                    <option value="الفن">الفن</option>
+                    <option value="التكنولوجيا">التكنولوجيا</option>
+                    <option value="مسار العالم">مسار العالم</option>
                 </select>
 
-                <textarea id="artDesc" class="form-control" placeholder="محتوى المقال كاملاً..." rows="4" required></textarea>
+                <textarea id="artDesc" class="form-control" placeholder="محتوى المقال كاملاً... (يمكنك إدراج صور بين السطور هكذا: [IMAGE:رابط_الصورة])" rows="6" required></textarea>
 
                 <div class="file-input-box">
-                    <label style="font-weight: bold; display: block; margin-bottom: 3px; color: #1b263b; font-size: 0.75rem;">📷 اختر صورة المقال:</label>
+                    <label style="font-weight: bold; display: block; margin-bottom: 3px; color: #1b263b; font-size: 0.75rem;">📷 الصورة الرئيسية للبطاقة:</label>
                     <input type="file" id="artImageFile" accept="image/*" class="form-control" style="margin-bottom: 0; font-size: 0.75rem;">
                 </div>
 
                 <div style="background: #f8f9fa; padding: 8px; border-radius: 4px; margin-bottom: 8px; border: 1px solid #ddd;">
                     <label style="font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 0.75rem;">
-                        <input type="checkbox" id="isTransferred" onchange="toggleSourceInputs()"> 🔗 منقول من موقع آخر
+                        <input type="checkbox" id="isTransferred" onchange="toggleSourceInputs()"> 🔗 منقول أو مقتبس من مصدر آخر
                     </label>
 
                     <div id="sourceFields" style="display: none; margin-top: 6px;">
-                        <input type="text" id="sourceName" class="form-control" placeholder="اسم الموقع (مثال: الجزيرة)">
-                        <input type="url" id="sourceUrl" class="form-control" placeholder="رابط الخبر الأصلي (https://...)" style="margin-bottom: 0;">
+                        <input type="text" id="sourceName" class="form-control" placeholder="اسم المصدر (مثال: أرشيف التاريخ)">
+                        <input type="url" id="sourceUrl" class="form-control" placeholder="رابط المقال الأصلي (https://...)" style="margin-bottom: 0;">
                     </div>
                 </div>
 
-                <button type="submit" class="admin-btn" style="width: 100%; padding: 8px; font-size: 0.85rem; background: #e0a96d; color: #1b263b; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;" id="saveBtn">💾 نشر سحابياً (يظهر على الهاتف والكمبيوتر)</button>
+                <button type="submit" class="admin-btn" style="width: 100%; padding: 9px; font-size: 0.85rem; background: #e0a96d; color: #1b263b; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;" id="saveBtn">💾 نشر المقال سحابياً</button>
             </form>
 
             <div style="margin-top: 15px;">
@@ -178,7 +167,7 @@
 
         <!-- قائمة المقالات -->
         <div id="listView">
-            <h2 class="section-title" id="currentSectionTitle">آخر المقالات والأخبار</h2>
+            <h2 class="section-title" id="currentSectionTitle">أحدث المسارات والمقالات</h2>
             <div class="articles-grid" id="articlesContainer"></div>
         </div>
 
@@ -193,31 +182,32 @@
             <div class="full-article-text" id="fullText"></div>
             
             <div class="share-section">
-                <span class="share-title">شارك:</span>
+                <span class="share-title">شارك المقال:</span>
                 <a id="shareWhatsapp" href="#" target="_blank" class="share-btn whatsapp">💬 واتساب</a>
                 <a id="shareFacebook" href="#" target="_blank" class="share-btn facebook">📘 فيسبوك</a>
                 <a id="shareTwitter" href="#" target="_blank" class="share-btn twitter">🐦 إكس</a>
-                <button onclick="copyArticleLink()" class="share-btn copy-link">📋 نسخ</button>
+                <button onclick="copyArticleLink()" class="share-btn copy-link">📋 نسخ الرابط</button>
             </div>
         </div>
     </div>
 
-    <!-- نافذة السياسات -->
+    <!-- نافذة السياسات و"من نحن" -->
     <div class="modal" id="policyModal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">×</button>
-            <h2 id="modalTitle" style="color: #1b263b; margin-bottom: 8px; font-size: 1.05rem;"></h2>
-            <div id="modalBody" style="color: #555; line-height: 1.5; font-size: 0.8rem;"></div>
+            <h2 id="modalTitle" style="color: #1b263b; margin-bottom: 12px; font-size: 1.15rem;"></h2>
+            <div id="modalBody" style="color: #444; line-height: 1.7; font-size: 0.85rem;"></div>
         </div>
     </div>
 
     <footer>
         <div class="footer-links">
+            <a href="javascript:void(0)" onclick="openPolicy('about')">من نحن</a> | 
             <a href="javascript:void(0)" onclick="openPolicy('privacy')">سياسة الخصوصية</a> | 
             <a href="javascript:void(0)" onclick="openPolicy('terms')">الشروط والأحكام</a> | 
             <span class="admin-footer-link" onclick="toggleAdmin()">لوحة المشرف 🔒</span>
         </div>
-        <p>جميع الحقوق محفوظة © 2026 - موقع مسار اليوم</p>
+        <p>جميع الحقوق محفوظة © 2026 - منصة مسار اليوم الثقافية</p>
     </footer>
 
     <script>
@@ -231,103 +221,53 @@
         const defaultArticles = [
             {
                 id: '1',
-                title: 'عاجل: اتفاق دبلوماسي جديد لتهدئة التوترات الإقليمية',
-                category: 'أخبار عاجلة',
-                desc: 'أعلنت جهات رسمية عن التوصل إلى تفاهمات مشتركة تهدف إلى خفض التصعيد وإرساء قواعد استقرار جديدة بالمنطقة.\n\nمن المتوقع أن تُعقد جلسات مشاورات إضافية خلال الأسبوع المقبل لمتابعة تنفيذ البنود المتفق عليها.',
-                img: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80',
+                title: 'أسرار المدن الضائعة: كيف أعادت الاكتشافات الأثرية صياغة التاريخ البشري',
+                category: 'التاريخ',
+                desc: 'تأخذنا التنقيبات الحديثة في أعماق الصحاري والغابات لنكتشف حضارات عريقة اندثرت لقرون، تاركة خلفها أسراراً هندسية وفلسفية مذهلة تتحدى الزمن.\n\n[IMAGE:https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80]\n\nوهنا تستمر تفاصيل الحفريات التاريخية وكيف ساهمت التقنيات الحديثة في إماطة اللثام عن أسرار الشعوب القديمة.',
+                img: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=800&q=80',
                 author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-26'
             },
             {
                 id: '2',
-                title: 'قمة طارئة لبحث مستجدات السياسة الخارجية واتفاقيات التعاون',
-                category: 'سياسة',
-                desc: 'انطلقت اليوم أعمال القمة السياسية بمشاركة وفود رفيعة المستوى لمناقشة سبل تعزيز الشراكة الاستراتيجية ومواجهة التحديات الاقتصادية والجيوسياسية الراهنة.\n\nتركزت النقاشات حول آليات التنسيق المشترك في المحافل الدولية.',
-                img: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=800&q=80',
+                title: 'بلاغة التراث: كيف أثرت الفنون البصرية والصوتية في تشكيل الهوية الثقافية',
+                category: 'الثقافة',
+                desc: 'تتجسد الهوية الإنسانية في تفاصيل التراث اليومي من حكايات، وفولكلور، وطقوس عريقة تتوارثها الأجيال كنزاً حياً ينبض بالإبداع.',
+                img: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80',
                 author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-25'
             },
             {
                 id: '3',
-                title: 'ارتفاع مؤشرات الأسواق العالمية وسط ترقب قرارات الفيدرالي',
-                category: 'اقتصاد وبورصة',
-                desc: 'شهدت الأسواق المالية تحركات ملحوظة اليوم مع ترقب المستثمرين لبيانات التضخم وأسعار الفائدة القادمة.\n\nتأتي هذه التحركات وسط قلق عام من تباطؤ النمو الاقتصادي العالمي، بينما تؤكد المؤسسات المالية ضرورة توخي الحذر.',
-                img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80',
+                title: 'مدارس الفن التشكيلي الحديثة: رحلة الروح عبر الألوان والخطوط',
+                category: 'الفن',
+                desc: 'من الكلاسيكية المعبرة إلى التجريد المعاصر، يمثل الفن التشكيلي لغة بصرية تخاطب الوجدان مباشرة وتترجم المشاعر الإنسانية.',
+                img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80',
                 author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-25'
             },
             {
                 id: '4',
-                title: 'تطورات متسارعة في الملفات الأوروبية والآسيوية',
-                category: 'عالم',
-                desc: 'تسلط التقارير الدولية الضوء على التحولات السياسية الكبرى وتبادل الزيارات الدبلوماسية بين عواصم صنع القرار العالمية.\n\nتهدف هذه التحركات لاحتواء الأزمات التجارية وتأمين خطوط الإمداد.',
-                img: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
+                title: 'عندما يلتقي الإبداع بالخوارزميات: مستقبل الفنون الرقمية والذكاء الاصطناعي',
+                category: 'التكنولوجيا',
+                desc: 'كيف يغير الذكاء الاصطناعي وجه الإبداع البشري؟ قراءة في تطور الأدوات الرقمية الحديثة التي تمنح الفنانين والكتّاب آفاقاً واسعة.',
+                img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
                 author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-24'
             },
             {
                 id: '5',
-                title: 'إثارة كبرى في مسابقات الدوري المحلي وحسم الصدارة',
-                category: 'رياضة',
-                desc: 'انتهت قمة الجولة بفوز حاسم عزز من حظوظ الفريق المتصدر في المنافسة على اللقب هذا الموسم، وسط حضور جماهيري غفير وأداء فني عالي المستوى.',
-                img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
-                author: 'مسار اليوم',
-                sourceUrl: '',
-                date: '2026-10-24'
-            },
-            {
-                id: '6',
-                title: 'ما الذي يجب تناوله للحصول على بشرة أكثر شباباً',
-                category: 'صحة',
-                desc: 'الشباب الدائم والنضارة المشرقة ليس نتيجة لكريمات العناية الباهظة وحدها، بل يبدأ السر الحقيقي من الداخل وتحديداً من ما نضعه في أطباقنا يومياً.',
-                img: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=80',
+                title: 'عوالم مجهولة: جولة عبر أبرز المحطات الجيوسياسية والثقافية حول العالم',
+                category: 'مسار العالم',
+                desc: 'قراءة تحليلية واستكشافية لأبرز التحولات والملفات الثقافية والجغرافية المؤثرة في المشهد العالمي المعاصر.',
+                img: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
                 author: 'مسار اليوم',
                 sourceUrl: '',
                 date: '2026-10-26'
-            },
-            {
-                id: '7',
-                title: 'افتتاح معرض الكتاب الدولي وسط إقبال ثقافي واسع',
-                category: 'ثقافة',
-                desc: 'فتحت أبواب المعرض الدولي للكتاب اليوم بمشاركة دور نشر عربية وعالمية واسعة، ليقدم وجبة دسمة من الندوات الأدبية وتوقيع الإصدارات الجديدة.',
-                img: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80',
-                author: 'مسار اليوم',
-                sourceUrl: '',
-                date: '2026-10-23'
-            },
-            {
-                id: '8',
-                title: 'نجوم الفن يحتفلون بالعرض الخاص لأحدث الإنتاجات السينمائية',
-                category: 'فن',
-                desc: 'شهد السجادة الحمراء حضوراً ضخماً لنجوم وصناع السينما للاحتفال بإطلاق الفيلم الجديد الذي يحمل طابعاً درامياً ومشوقاً.',
-                img: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
-                author: 'مسار اليوم',
-                sourceUrl: '',
-                date: '2026-10-22'
-            },
-            {
-                id: '9',
-                title: 'تحقيق استقصائي: خبايا التحول الرقمي وتأثيره على المستقبل',
-                category: 'تحقيقات',
-                desc: 'يسلط هذا التحقيق الضوء على التحديات والفرص الكامنة خلف ثورة الذكاء الاصطناعي والتحول الرقمي في المؤسسات الحديثة.',
-                img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-                author: 'مسار اليوم',
-                sourceUrl: '',
-                date: '2026-10-22'
-            },
-            {
-                id: '10',
-                title: 'الجهات الأمنية تحبط محاولة احتيال إلكتروني وتضبط المتورطين',
-                category: 'حوادث',
-                desc: 'صرح مصدر أمني مسؤول عن نجاح الأجهزة المختصة في الإيقاع بشبكة تنفذ عمليات نصب إلكتروني، وتم اتخاذ الإجراءات القانونية اللازمة.',
-                img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
-                author: 'مسار اليوم',
-                sourceUrl: '',
-                date: '2026-10-21'
             }
         ];
 
@@ -355,25 +295,28 @@
             const container = document.getElementById('articlesContainer');
             container.innerHTML = '';
 
-            let filtered = currentFilter === 'الكل' ? articles : articles.filter(a => a.category === currentFilter);
+            let filtered = currentFilter === 'الكل' ? articles : articles.filter(a => a.category && a.category.trim() === currentFilter.trim());
 
             if (filtered.length === 0) {
-                container.innerHTML = `<p style="text-align:center; color:#777; padding: 20px; font-size: 0.85rem;">لا توجد مقالات منشورة في هذا القسم حالياً.</p>`;
+                container.innerHTML = `<p style="text-align:center; color:#777; padding: 25px; font-size: 0.9rem;">لا توجد مقالات منشورة في هذا المسار حالياً.</p>`;
                 return;
             }
 
             filtered.forEach((a) => {
-                const authorDisplay = a.sourceUrl ? `منقول عن: ${a.author}` : `بقلم: ${a.author || 'مسار اليوم'}`;
+                const authorDisplay = a.sourceUrl ? `مصدر المقال: ${a.author}` : `بقلم: ${a.author || 'مسار اليوم'}`;
                 const articleDate = a.date || '2026-10-26';
+                
+                // تنظيف الوصف من كود الصور عند عرضه في القائمة الرئيسية المختصرة
+                const cleanDesc = a.desc.replace(/\[IMAGE:.*?\]/g, '');
 
                 container.innerHTML += `
                     <div class="article-card">
-                        <img src="${a.img}" class="article-img" alt="صورة الخبر" onclick="openArticle('${a.id}')">
+                        <img src="${a.img}" class="article-img" alt="صورة المقال" onclick="openArticle('${a.id}')">
                         <div class="article-content">
                             <div>
                                 <span class="article-category">${a.category}</span>
                                 <a class="article-title" onclick="openArticle('${a.id}')">${a.title}</a>
-                                <p class="article-desc">${a.desc}</p>
+                                <p class="article-desc">${cleanDesc}</p>
                             </div>
                             <div class="article-meta">
                                 <span>✍️ ${authorDisplay}</span>
@@ -392,19 +335,22 @@
             document.getElementById('fullCat').innerText = article.category;
             document.getElementById('fullTitle').innerText = article.title;
             document.getElementById('fullImg').src = article.img;
-            document.getElementById('fullText').innerText = article.desc;
+            
+            // تحويل وسم [IMAGE:رابط] إلى وسم صورة HTML حقيقي ليظهر بين السطور
+            let formattedText = article.desc.replace(/\[IMAGE:(.*?)\]/g, '<img src="$1" alt="صورة داخل المقال">');
+            document.getElementById('fullText').innerHTML = formattedText;
 
             const authorBox = document.getElementById('fullAuthor');
             const articleDate = article.date || '2026-10-26';
 
             if (article.sourceUrl) {
-                authorBox.innerHTML = `<div>✍️ <strong>الناشر:</strong> مسار اليوم | 🔗 <a href="${article.sourceUrl}" target="_blank" style="color:#e0a96d; font-weight:bold;">${article.author}</a></div> <div>📅 ${articleDate}</div>`;
+                authorBox.innerHTML = `<div>✍️ <strong>المنصة:</strong> مسار اليوم | 🔗 <a href="${article.sourceUrl}" target="_blank" style="color:#e0a96d; font-weight:bold;">${article.author}</a></div> <div>📅 ${articleDate}</div>`;
             } else {
                 authorBox.innerHTML = `<div>✍️ ${article.author || 'خاص بمسار اليوم'}</div> <div>📅 ${articleDate}</div>`;
             }
 
             const pageUrl = window.location.href;
-            const shareText = encodeURIComponent(`اقرأ على موقع مسار اليوم:\n${article.title}`);
+            const shareText = encodeURIComponent(`اقرأ على منصة مسار اليوم:\n${article.title}`);
             
             document.getElementById('shareWhatsapp').href = `https://api.whatsapp.com/send?text=${shareText}`;
             document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
@@ -425,15 +371,17 @@
 
         function copyArticleLink() {
             navigator.clipboard.writeText(window.location.href);
-            alert("تم نسخ الرابط بنجاح!");
+            alert("تم نسخ رابط المقال بنجاح!");
         }
 
         function filterCategory(cat, element) {
             currentFilter = cat;
-            document.getElementById('currentSectionTitle').innerText = cat === 'الكل' ? 'آخر المقالات والأخبار' : `قسم: ${cat}`;
+            document.getElementById('currentSectionTitle').innerText = cat === 'الكل' ? 'أحدث المسارات والمقالات' : `مسار: ${cat}`;
             
             document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
+            if (element) {
+                element.classList.add('active');
+            }
             goHome();
             renderArticles();
         }
@@ -509,7 +457,7 @@
                 const uploadedImg = imageFile ? await processImageFile(imageFile) : (existingArticle.img || 'https://via.placeholder.com/600x400?text=No+Image');
 
                 const isTransferred = document.getElementById('isTransferred').checked;
-                const author = isTransferred ? (document.getElementById('sourceName').value || 'موقع آخر') : 'مسار اليوم';
+                const author = isTransferred ? (document.getElementById('sourceName').value || 'مصدر خارجي') : 'مسار اليوم';
                 const sourceUrl = isTransferred ? document.getElementById('sourceUrl').value : '';
                 
                 const currentDate = new Date().toISOString().split('T')[0];
@@ -533,12 +481,12 @@
                 document.getElementById('isTransferred').checked = false;
                 toggleSourceInputs();
 
-                alert("🚀 تم نشر المقال تحت اسم (مسار اليوم) بنجاح!");
+                alert("🚀 تم نشر المقال وإتاحة الصور بين السطور بنجاح!");
             } catch (err) {
                 alert("حدث خطأ أثناء النشر السحابي.");
             } finally {
                 saveBtn.disabled = false;
-                saveBtn.innerText = "💾 نشر سحابياً (يظهر على الهاتف والكمبيوتر)";
+                saveBtn.innerText = "💾 نشر المقال سحابياً";
             }
         }
 
@@ -578,7 +526,7 @@
         }
 
         function deleteArticle(id) {
-            if (confirm("هل أنت متأكد من الحذف؟")) {
+            if (confirm("هل أنت متأكد من حذف هذا المقال؟")) {
                 db.ref('articles/' + id).remove().then(() => {
                     alert("تم الحذف بنجاح!");
                 });
@@ -590,12 +538,15 @@
             const title = document.getElementById('modalTitle');
             const body = document.getElementById('modalBody');
 
-            if (type === 'privacy') {
+            if (type === 'about') {
+                title.innerText = "من نحن - مسار اليوم";
+                body.innerHTML = `<p>منصة <strong>مسار اليوم</strong> هي نافذة رقمية ثقافية ومعرفية مستقلة، تهدف إلى إحياء الشغف بالمعرفة من خلال الغوص في أعماق التاريخ، واستكشاف عوالم الفن والإبداع، وإبراز تجليات الثقافة الإنسانية، ومتابعة المشهد العالمي، مع مواكبة أحدث التحولات التكنولوجية التي تصنع المستقبل.</p><p style="margin-top:10px;">نؤمن بأن الكلمة الصادقة والصورة المُلهمة هما جسر التواصل بين الماضي والحاضر، ونسعى لتقديم محتوى راقٍ وموثوق يلهم عقول القراء.</p>`;
+            } else if (type === 'privacy') {
                 title.innerText = "سياسة الخصوصية";
-                body.innerHTML = `<p>نحن في موقع <strong>مسار اليوم</strong> نلتزم بخصوصية زوارنا ونستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح والإعلانات.</p>`;
+                body.innerHTML = `<p>نحن في منصة <strong>مسار اليوم</strong> نولي اهتماماً بالغاً بخصوصية زوارنا. نحترم سرية البيانات ونستخدم ملفات تعريف الارتباط لتحسين تجربة تصفحك للمحتوى الثقافي والفني بكل أمان.</p>`;
             } else {
                 title.innerText = "الشروط والأحكام";
-                body.innerHTML = `<p>استخدامك لموقع <strong>مسار اليوم</strong> يقتضي الالتزام بالقوانين. جميع المواد المنشورة محمية ولا يجوز نسخها دون إذن.</p>`;
+                body.innerHTML = `<p>استخدامك لمنصة <strong>مسار اليوم</strong> يعني موافقتك على الالتزام بحقوق الملكية الفكرية. جميع المواد والمقالات المنشورة محمية ولا يجوز إعادة نشرها دون إذن مسبق.</p>`;
             }
             modal.style.display = 'flex';
         }
